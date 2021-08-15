@@ -18,6 +18,7 @@ As a rule of thumb you should probably just use JSON, but if your use cases invo
 - Numbers are converted automatically into strings during serialization, you should JSON.stringify your values before encoding them and JSON.parse them after decoding if you want to preserve numbers or complex structures.
 - If the data to serialize contains control characters then compared to JSON this will save you even more memory, since in JSON a single control character can balloon into multiple characters once serialized, like `\x10`, which can take up to 2 bytes per characters in the end so up to 8 bytes in total in this case, while with this archive format control characters only take 1 byte, like any other outputted character, that's 8x less memory.
 - If the data to serialize comprises of many tiny numbers or strings this may not be the most suitable format for you, as there is a tiny memory overhead to pay that scales with the number of elements to serialize, if those elements are tiny too though (like 10 characters instead of 1000s) then that'll add up.
+- If you want to persist a base256 archive to disk remember to use the "latin1" encoding, otherwise the file on disk may way significantly more than necessary.
 
 ## Install
 
