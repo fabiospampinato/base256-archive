@@ -1,7 +1,7 @@
 {
   "name": "base256-archive",
   "description": "Simple archive format that produces a base256-encoded string.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
