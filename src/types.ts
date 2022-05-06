@@ -1,5 +1,5 @@
 
-/* TYPES */
+/* MAIN */
 
 type Packed = string;
 
@@ -29,4 +29,4 @@ type UnpackOptions = {
 
 /* EXPORT */
 
-export {Packed, PackableValue, Packable, PackOptions, UnpackedValue, Unpacked, UnpackOptions};
+export type {Packed, PackableValue, Packable, PackOptions, UnpackedValue, Unpacked, UnpackOptions};

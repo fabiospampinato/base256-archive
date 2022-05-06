@@ -1,9 +1,8 @@
 
 /* IMPORT */
 
-const _ = require ( 'lodash' );
-const {describe} = require ( 'fava' );
-const {default: Archive} = require ( '../dist' );
+import {describe} from 'fava';
+import Archive from '../dist/index.js';
 
 /* MAIN */
 
@@ -42,7 +41,7 @@ describe ( 'Base256 Archive', it => {
 
     for ( const fixture of fixtures ) {
 
-      t.deepEqual ( Archive.unpack ( Archive.pack ( fixture ) ), _.mapValues ( fixture, String ) );
+      t.deepEqual ( Archive.unpack ( Archive.pack ( fixture ) ), Object.fromEntries ( Object.entries ( fixture ).map ( ([ key, value ]) => [key, String ( value )] ) ) );
 
     }
 

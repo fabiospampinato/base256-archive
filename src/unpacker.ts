@@ -2,16 +2,16 @@
 /* IMPORT */
 
 import Base256 from 'base256-encoding';
-import {Packed, UnpackedValue, Unpacked, UnpackOptions} from './types';
-import {NOOP, TYPE_ARRAY, TYPE_OBJECT} from './constants';
+import {IDENTITY, TYPE_ARRAY, TYPE_OBJECT} from './constants';
+import type {Packed, UnpackedValue, Unpacked, UnpackOptions} from './types';
 
-/* MAIN */
+/* HELPERS */
 
-const Unpacker = {
+const Helpers = {
 
-  /* HELPERS */
+  /* API */
 
-  _getDivider: ( packed: Packed ): string | undefined => {
+  getDivider: ( packed: Packed ): string | undefined => {
 
     if ( packed === TYPE_ARRAY || packed === TYPE_OBJECT ) return;
 
@@ -24,9 +24,9 @@ const Unpacker = {
 
   },
 
-  _getObject: ( packed: Packed, divider: string | undefined, decode: boolean = true ): Unpacked => {
+  getObject: ( packed: Packed, divider: string | undefined, decode: boolean = true ): Unpacked => {
 
-    const decoder = decode ? ( value: UnpackedValue ) => Base256.decodeStr ( value ) : NOOP;
+    const decoder = decode ? ( value: UnpackedValue ) => Base256.decodeStr ( value ) : IDENTITY;
     const sections = divider ? packed.split ( divider ) : [packed];
     const type = sections[0];
     const values = sections.slice ( 1 );
@@ -52,14 +52,20 @@ const Unpacker = {
 
     }
 
-  },
+  }
+
+};
+
+/* MAIN */
+
+const Unpacker = {
 
   /* API */
 
   unpack: ( packed: Packed, options?: UnpackOptions ): Unpacked => {
 
-    const divider = Unpacker._getDivider ( packed );
-    const object = Unpacker._getObject ( packed, divider, options?.decode );
+    const divider = Helpers.getDivider ( packed );
+    const object = Helpers.getObject ( packed, divider, options?.decode );
 
     return object;
 

@@ -2,16 +2,16 @@
 /* IMPORT */
 
 import Base256 from 'base256-encoding';
-import {Packed, PackableValue, Packable, PackOptions} from './types';
 import {TYPE_ARRAY, TYPE_OBJECT} from './constants';
+import type {Packed, PackableValue, Packable, PackOptions} from './types';
 
-/* MAIN */
+/* HELPERS */
 
-const Packer = {
+const Helpers = {
 
-  /* HELPERS */
+  /* API */
 
-  _getDivider: ( values: string[] ): string => {
+  getDivider: ( values: string[] ): string => {
 
     let length = 0;
 
@@ -29,7 +29,7 @@ const Packer = {
 
   },
 
-  _getValues: ( packable: Packable, encode: boolean = true ): string[] => {
+  getValues: ( packable: Packable, encode: boolean = true ): string[] => {
 
     const encoder = encode ? ( value: PackableValue ) => Base256.encodeStr ( String ( value ) ) : String;
 
@@ -43,14 +43,20 @@ const Packer = {
 
     }
 
-  },
+  }
+
+};
+
+/* MAIN */
+
+const Packer = {
 
   /* API */
 
   pack: ( packable: Packable, options?: PackOptions ): Packed => {
 
-    const values = Packer._getValues ( packable, options?.encode );
-    const divider = Packer._getDivider ( values );
+    const values = Helpers.getValues ( packable, options?.encode );
+    const divider = Helpers.getDivider ( values );
     const packed = values.join ( divider );
 
     return packed;

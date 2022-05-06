@@ -1,9 +1,9 @@
 
 /* IMPORT */
 
-import {Packed, Packable, PackOptions, Unpacked, UnpackOptions} from './types';
 import Packer from './packer';
 import Unpacker from './unpacker';
+import type {Packed, Packable, PackOptions, Unpacked, UnpackOptions} from './types';
 
 /* MAIN */
 
