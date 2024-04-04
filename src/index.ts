@@ -28,3 +28,4 @@ const Archive = {
 /* EXPORT */
 
 export default Archive;
+export type {Packed, Packable, PackOptions, Unpacked, UnpackOptions};
