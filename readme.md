@@ -23,7 +23,7 @@ As a rule of thumb you should probably just use JSON, but if your use cases invo
 ## Install
 
 ```sh
-npm install --save base256-archive
+npm install base256-archive
 ```
 
 ## Usage
