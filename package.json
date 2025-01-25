@@ -3,7 +3,7 @@
   "repository": "github:fabiospampinato/base256-archive",
   "description": "Simple archive format that produces a base256-encoded string.",
   "license": "MIT",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "main": "dist/index.js",
   "exports": "./dist/index.js",
